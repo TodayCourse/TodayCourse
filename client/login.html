@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>오늘의:코스</title>
+    <link rel="stylesheet" href="./login.css"/>
+    <script src="https://kit.fontawesome.com/f9bbedc3e2.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="menu">
+      <div class="logo" id="logo">
+        <img src="./IMG/logo.png" alt="로고"></a>
+      </div>
+          <nav class="menu_bar">
+            <ul>
+              <li><a href="#">오늘의 코스</a></li>
+              <li><a href="#">여행코스</a></li>
+              <li><a href="#">랜덤여행</a></li>
+              <li><a href="#">여행정보</a></li>
+            </ul>
+          </nav>
+          <div class="right-btn">
+            <div class="login-btn">
+              <a href="./login.html">로그인/회원가입</a>
+            </div>
+            <div class="menu-btn">
+              <i class="fa-solid fa-bars" style="color: #333;"></i>
+            </div>
+          </div>
+      </div>
+      <div>
+        <div class="login">
+          <img src="./IMG/logo.png" alt="로고">
+          <form method="post" id="login-form">
+            <input type="text" class="email" name="username" placeholder=" 이메일을 입력해 주세요" autocomplete="email" required>
+            <input type="password" class="password" name="userPassword" placeholder=" 비밀번호를 입력해 주세요" required>
+            <div class="save-check-icon">
+              <div>
+                <input type="checkbox" id="check-btn"/>
+                <label for="check-btn"><span>아이디 저장</span></label>
+              </div>
+              <div class="id-password">
+                <span class="id-password">아이디/비밀번호 찾기</span>
+              </div>
+            </div>
+            <input type="submit" value="로그인" id="login-btn">
+          </form>
+        </div>
+        <div class="socialLogin">
+          <p> 또는 </p>
+          <div class="socialLogin-img">
+            <img src="./IMG/kakao.png" alt="카카오톡">
+            <img src="./IMG/naver.png" alt="네이버">
+            <img src="./IMG/google.png" alt="구글">
+          </div>
+          <p> 아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;<a href="./join.html"></span><u>회원가입</u></a> </p>
+        </div>
+      </div>
+  </body>
+</html>
