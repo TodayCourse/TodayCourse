@@ -1,0 +1,202 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body, ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Pretendard-Regular';
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Pretendard-Regular';
+}
+
+.menu_bar > ul > li > a {
+  font-size: 16px;
+  display: block;
+  padding: 10px 20px;
+}
+
+.menu_bar > ul > li {
+  display: inline-block;
+}
+
+.menu {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 20px;
+  display:flex;
+  justify-content: space-between;
+}
+
+.menu_bar {
+  text-align: center;
+}
+
+.menu_bar > ul > li > a {
+  background-color: #fff;
+  color: #000;
+}
+
+.menu_bar > ul > li > a:hover{
+  background-color: #fff;
+  color: #5463FF;
+}
+
+.logo img{
+  width: 150px;
+  margin: 0;
+}
+
+.right-btn {
+  display: flex;
+  align-items: center;
+}
+
+.login-btn {
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin-right: 30px;
+  font-size: 15px;
+}
+
+.login-btn:hover {
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin-right: 30px;
+  font-size: 15px;
+  background-color: #f2f3f7;
+}
+
+.login {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login img{
+  width: 200px;
+  margin-bottom: 40px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#login-form > input {
+  margin-bottom: 10px;
+  width: 300px;
+  height: 50px;
+  border-radius: 8px;
+  border: 0;
+  background-color: #f2f3f7;
+  padding: 5px 20px;
+}
+
+.save-check-icon > div > label > span {
+  font-size: 15px;
+}
+
+#login-form > #login-btn {
+  background-color: #5463FF;
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+}
+
+.save-check-icon {
+  display: flex;
+  justify-content: space-between;
+}
+
+.id-password {
+  font-size: 15px;
+}
+
+input.email::-webkit-input-placeholder {
+  background-image: url(./IMG/envelope-solid.svg);
+  background-size: 15px;
+  background-position: 3px 0;
+  background-repeat: no-repeat;
+  text-indent: 25px;
+}
+
+input.password::-webkit-input-placeholder {
+  background-image: url(./IMG/lock-solid.svg);
+  background-size: 13px;
+  background-position: 3px 0;
+  background-repeat: no-repeat;
+  text-indent: 25px;
+}
+
+input:focus {
+  outline: 2px solid #5463FF;
+}
+
+
+/*
+input.password::-webkit-input-placeholder {
+  background-image: url(./eye-slash-solid.svg);
+  background-size: 15px;
+  background-position-x: right;
+  background-repeat: no-repeat;
+  text-indent: 25px;
+}
+  */
+
+.socialLogin {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.socialLogin img {
+  width: 60px;
+}
+
+.socialLogin u {
+  color: #5463FF;
+}
+
+/* 모바일 (휴대폰, 태블릿 세로) */
+@media only screen and (min-width: 200px) and (max-width: 1000px) {
+  .menu {
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-top: 20px;
+  }
+
+  .menu_bar {
+    display: none;
+  }
+
+  .login-btn {
+    display: none;
+  }
+
+  .logo img{
+    width: 140px;
+    margin: 0;
+  }
+
+}
