@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오늘의 : 코스</title>
+  <link rel="stylesheet" href="./join.css" />
+  <script src="https://kit.fontawesome.com/f9bbedc3e2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="menu">
+    <div class="logo" id="logo">
+      <img src="./IMG/logo.png" alt="로고"></a>
+    </div>
+    <nav class="menu_bar">
+      <ul>
+        <li><a href="#">오늘의 코스</a></li>
+        <li><a href="#">여행코스</a></li>
+        <li><a href="#">랜덤여행</a></li>
+        <li><a href="#">여행정보</a></li>
+      </ul>
+    </nav>
+    <div class="right-btn">
+      <div class="login-btn">
+        <a href="./login.html">로그인/회원가입</a>
+      </div>
+      <div class="menu-btn">
+        <i class="fa-solid fa-bars" style="color: #333;"></i>
+      </div>
+    </div>
+  </div>
+  <div>
+    <form action="#" class="form">
+      <!-- Progress bar -->
+      <div class="progressbar">
+        <div class="progress" id="progress"></div>
+
+        <div class="progress-step progress-step-active" data-title="약관동의"></div>
+        <div class="progress-step" data-title="정보입력"></div>
+        <div class="progress-step" data-title="가입완료"></div>
+      </div>
+
+      <!-- Steps --> 
+      <div class="form-step form-step-active">
+        <div class="allCheck">
+          <input type="checkbox" name="allCheck" id="allCheck" value="selectall"/>
+          <label for="allCheck">약관 전체동의 <span style="font-size: 13px; color: #999; font-weight: 400;">(선택항목 포함)</span></label>
+        </div>
+        <div class="input-group">
+          <input type="checkbox" name="check01" id="check01" required />
+          <label for="check01">(필수) 이용약관</label>
+        </div>
+        <div class="input-group">
+          <input type="checkbox" name="check02" id="check2" required />
+          <label for="check02">(필수) 만 14세 이상 확인</label>
+        </div>
+        <div class="input-group">
+          <input type="checkbox" name="check03" id="check03" required />
+          <label for="check03">(필수) 개인정보 수집 및 이용 동의</label>
+        </div>
+        <div class="input-group">
+          <input type="checkbox" name="check04" id="check04" />
+          <label for="check04">(선택) 마케팅 알림 수신 동의</label>
+        </div>
+        <div class="input-group">
+          <input type="checkbox" name="check05" id="check05" />
+          <label for="check05">(선택) 위치기반 서버 이용약관 동의</label>
+        </div>
+        <div class="btns-group-one">
+          <a href="#" class="btn btn-next">Next</a>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <div class="input-user">
+          <label for="phone">이름</label>
+          <input type="text" name="name" id="name" required />
+        </div>
+        <div class="input-user">
+          <td><tr><label for="phone">닉네임</label></tr></td>
+          <td><tr></tr><input type="text" name="nickname" id="nickname" required /></tr></td>
+        </div>
+        <div class="input-user">
+          <label for="phone">휴대전화</label>
+          <input type="text" name="number" id="number" required />
+        </div>
+        <div class="input-user">
+          <label for="phone">이메일</label>
+          <div class="email-group">
+            <input type="text" name="email" id="email" required />&nbsp;@&nbsp;
+            <input type="text" name="email" id="email" required />
+            <a href="#" class="btn btn-email">인증요청</a>
+          </div>
+        </div>
+        <div class="input-user">
+          <label for="phone">인증번호 입력</label>
+          <input type="text" name="emailNumber" id="emailNumber" required />
+        </div>
+        <div class="input-user">
+          <label for="phone">비밀번호</label>
+          <input type="text" name="password" id="password" required />
+        </div>
+        <div class="input-user">
+          <label for="phone">비밀번호 재확인</label>
+          <input type="text" name="passwordCheck" id="passwordCheck" required />
+        </div>
+        <div class="btns-group-one">
+          <a href="#" class="btn btn-next">가입하기</a>
+        </div>
+      </div>
+
+      <div class="form-step">
+        <div class="input-group">
+          <h1>회원가입이 완료되었습니다</h1>
+        </div>
+        <div class="input-group">
+          <p>김땡땡 님의 회원가입을 축하합니다.
+            로그인 하시면 더욱 다양한 서비스와 혜택을 제공 받으실 수 있습니다.</p>
+        </div>
+        <div class="btns-group">
+          <a href="#" class="btn btn-prev">홈으로</a>
+          <a href="./login.html" class="btn btn-next">로그인</a>
+        </div>
+      </div>
+  </div>
+  </form>
+  </div>
+</body>
+</html>
+
+<script>
+  const prevBtns = document.querySelectorAll(".btn-prev");
+  const nextBtns = document.querySelectorAll(".btn-next");
+  const progress = document.getElementById("progress");
+  const formSteps = document.querySelectorAll(".form-step");
+  const progressSteps = document.querySelectorAll(".progress-step");
+
+  let formStepsNum = 0;
+
+  nextBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      formStepsNum++;
+      updateFormSteps();
+      updateProgressbar();
+    });
+  });
+
+  prevBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      location.href = "./main.html";
+    });
+  });
+
+  function updateFormSteps() {
+    formSteps.forEach((formStep) => {
+      formStep.classList.contains("form-step-active") &&
+        formStep.classList.remove("form-step-active");
+    });
+
+    formSteps[formStepsNum].classList.add("form-step-active");
+  }
+
+  function updateProgressbar() {
+    progressSteps.forEach((progressStep, idx) => {
+      if (idx < formStepsNum + 1) {
+        progressStep.classList.add("progress-step-active");
+      } else {
+        progressStep.classList.remove("progress-step-active");
+      }
+    });
+
+    const progressActive = document.querySelectorAll(".progress-step-active");
+
+    progress.style.width =
+      ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+  }
+</script>
