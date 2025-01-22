@@ -12,7 +12,7 @@
 <body>
   <div class="menu">
     <div class="logo" id="logo">
-      <img src="./IMG/logo.png" alt="로고"></a>
+      <img src="./logo.png" alt="로고"></a>
     </div>
     <nav class="menu_bar">
       <ul>
@@ -31,149 +31,126 @@
       </div>
     </div>
   </div>
-  <div>
-    <form action="#" class="form">
-      <!-- Progress bar  -->
-      <div class="progressbar">
-        <div class="progress" id="progress"></div>
 
-        <div class="progress-step progress-step-active" data-title="약관동의"></div>
-        <div class="progress-step" data-title="정보입력"></div>
-        <div class="progress-step" data-title="가입완료"></div>
-      </div>
+  <form action="#" class="form">
+    <h2>약관동의</h2>
+    <div class="check-agree">
+      <form action="/" method="POST" id="form__wrap" class="form__wrap">
+        <div class="check-all">
+          <input type="checkbox" name="agree_all" id="agree_all">
+          <span><b>전체 약관 동의</b></span>
+        </div>
 
-      <!-- Steps --> 
-      <div class="form-step form-step-active">
-        <div class="allCheck">
-          <input type="checkbox" name="allCheck" id="allCheck" value="selectall"/>
-          <label for="allCheck">약관 전체동의 <span style="font-size: 13px; color: #999; font-weight: 400;">(선택항목 포함)</span></label>
+        <div class="agree-top">
+            <input type="checkbox" name="agree" value="1">
+          <span style="color: var(--primary-color);">[필수]</span><a id="modalOpenText">&nbsp;이용약관</a>
         </div>
-        <div class="input-group">
-          <input type="checkbox" name="check01" id="check01" required />
-          <label for="check01">(필수) 이용약관</label>
+          
+        <div id="modalContainer" class="hidden">
+          <div id="modalContent">
+          <p>모달 창 입니다.</p>
+          <button id="modalCloseButton">확인</button>
+          </div> 
         </div>
-        <div class="input-group">
-          <input type="checkbox" name="check02" id="check2" required />
-          <label for="check02">(필수) 만 14세 이상 확인</label>
+        
+        <div class="agree">
+          <input type="checkbox" name="agree" value="2">
+          <span style="color: var(--primary-color);">[필수]</span><a id="modalOpenText01">&nbsp;만 14세 이상 확인</a>
         </div>
-        <div class="input-group">
-          <input type="checkbox" name="check03" id="check03" required />
-          <label for="check03">(필수) 개인정보 수집 및 이용 동의</label>
-        </div>
-        <div class="input-group">
-          <input type="checkbox" name="check04" id="check04" />
-          <label for="check04">(선택) 마케팅 알림 수신 동의</label>
-        </div>
-        <div class="input-group">
-          <input type="checkbox" name="check05" id="check05" />
-          <label for="check05">(선택) 위치기반 서버 이용약관 동의</label>
-        </div>
-        <div class="btns-group-one">
-          <a href="#" class="btn btn-next">Next</a>
-        </div>
-      </div>
 
-      <div class="form-step">
-        <div class="input-user">
-          <label for="phone">이름</label>
-          <input type="text" name="name" id="name" required />
-        </div>
-        <div class="input-user">
-          <td><tr><label for="phone">닉네임</label></tr></td>
-          <td><tr></tr><input type="text" name="nickname" id="nickname" required /></tr></td>
-        </div>
-        <div class="input-user">
-          <label for="phone">휴대전화</label>
-          <input type="text" name="number" id="number" required />
-        </div>
-        <div class="input-user">
-          <label for="phone">이메일</label>
-          <div class="email-group">
-            <input type="text" name="email" id="email" required />&nbsp;@&nbsp;
-            <input type="text" name="email" id="email" required />
-            <a href="#" class="btn btn-email">인증요청</a>
+        <div id="modalContainer01" class="hidden01">
+          <div id="modalContent01">
+          <p>모달 창 입니다.</p>
+          <button id="modalCloseButton01">확인</button>
           </div>
         </div>
-        <div class="input-user">
-          <label for="phone">인증번호 입력</label>
-          <input type="text" name="emailNumber" id="emailNumber" required />
-        </div>
-        <div class="input-user">
-          <label for="phone">비밀번호</label>
-          <input type="text" name="password" id="password" required />
-        </div>
-        <div class="input-user">
-          <label for="phone">비밀번호 재확인</label>
-          <input type="text" name="passwordCheck" id="passwordCheck" required />
-        </div>
-        <div class="btns-group-one">
-          <a href="#" class="btn btn-next">가입하기</a>
-        </div>
-      </div>
 
-      <div class="form-step">
-        <div class="input-group">
-          <h1>회원가입이 완료되었습니다</h1>
+        <div class="agree">
+          <input type="checkbox" name="agree" value="3">
+          <span style="color: var(--primary-color);">[필수]</span><a id="modalOpenText02">&nbsp;개인정보 수집 및 이용 동의</a>
         </div>
-        <div class="input-group">
-          <p>김땡땡 님의 회원가입을 축하합니다.
-            로그인 하시면 더욱 다양한 서비스와 혜택을 제공 받으실 수 있습니다.</p>
+
+        <div id="modalContainer02" class="hidden02">
+          <div id="modalContent02">
+          <p>모달 창 입니다.</p>
+          <button id="modalCloseButton02">확인</button>
+          </div>
+        </div> 
+
+        <div class="agree-bottom">
+          <input type="checkbox" name="agree" value="4">
+          <span class="select_disable">[선택]</span><a id="modalOpenText03">&nbsp;마케팅 알림 수신 동의</a>
         </div>
-        <div class="btns-group">
-          <a href="#" class="btn btn-prev">홈으로</a>
-          <a href="./login.html" class="btn btn-next">로그인</a>
+
+        <div id="modalContainer03" class="hidden03">
+          <div id="modalContent03">
+          <p>모달 창 입니다.</p>
+          <button id="modalCloseButton03">확인</button>
+          </div>
         </div>
+
+        <div class="agree-bottom">
+      <input type="checkbox" name="agree" value="5">
+      <span class="select_disable">[선택]</span><a id="modalOpenText04">&nbsp;위치기반 서비스 이용약관 동의</a>
+    </div>
+
+    <div id="modalContainer04" class="hidden04">
+      <div id="modalContent04">
+      <p>모달 창 입니다.</p>
+      <button id="modalCloseButton04">확인</button>
       </div>
+    </div>
+    </div>
   </div>
-  </form>
+
+    <div class="join_form">
+      <h2>회원가입 정보입력</h2>
+      <div class="input-user">
+      <label for="phone">이름</label>
+      <input type="text" name="name" id="name" placeholder="이름" required />
+    </div>
+    <div class="input-user">
+      <td><tr><label for="phone">닉네임</label></tr></td>
+      <div class="nickname-group">
+        <td><tr></tr><input type="text" name="nickname" id="nickname" placeholder="닉네임" /></tr></td>
+        <a href="#" class="btn btn-nickname">중복확인</a>
+      </div>
+    </div>
+    <div class="input-user">
+      <label for="phone">휴대전화</label>
+      <input type="text" name="number" id="number" placeholder="휴대폰 번호 입력('-'제외 11자리 입력)" required />
+    </div>
+    <div class="input-user">
+      <label for="phone">이메일</label>
+      <div class="email-group">
+        <input type="text" name="email" id="email" required placeholder="이메일 주소"/>&nbsp;&nbsp;@&nbsp;&nbsp;
+        <select type="text" name="email" id="email" required>
+          <option value="naver.com">naver.com</option>
+          <option value="google.com">google.com</option>
+          <option value="hanmail.net">hanmail.net</option>
+          <option value="nate.com">nate.com</option>
+          <option value="kakao.com">kakao.com</option>
+        </select>
+        <a href="#" class="btn btn-email">인증요청</a>
+      </div>
+    </div>
+    <div class="input-user">
+      <label for="phone">인증번호 입력</label>
+      <input type="text" name="emailNumber" id="emailNumber" placeholder="인증번호 6자리를 입력해주세요" required />
+    </div>
+    <div class="input-user">
+      <label for="phone">비밀번호</label>
+      <input type="text" name="password" id="password" placeholder="비밀번호 입력(문자, 숫자, 특수문자 포함 8자리 이상)" required />
+    </div>
+    <div class="input-user">
+      <label for="phone">비밀번호 재확인</label>
+      <input type="text" name="passwordCheck" id="passwordCheck" placeholder="비밀번호 재입력" required />
+    </div>
+    <div class="btns-group-one">
+      <a href="#" class="btn btn-next">가입하기</a>
+    </div>
   </div>
+</form>
+<script src="./join.js"></script>
 </body>
 </html>
-
-<script>
-  const prevBtns = document.querySelectorAll(".btn-prev");
-  const nextBtns = document.querySelectorAll(".btn-next");
-  const progress = document.getElementById("progress");
-  const formSteps = document.querySelectorAll(".form-step");
-  const progressSteps = document.querySelectorAll(".progress-step");
-
-  let formStepsNum = 0;
-
-  nextBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      formStepsNum++;
-      updateFormSteps();
-      updateProgressbar();
-    });
-  });
-
-  prevBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      location.href = "./main.html";
-    });
-  });
-
-  function updateFormSteps() {
-    formSteps.forEach((formStep) => {
-      formStep.classList.contains("form-step-active") &&
-        formStep.classList.remove("form-step-active");
-    });
-
-    formSteps[formStepsNum].classList.add("form-step-active");
-  }
-
-  function updateProgressbar() {
-    progressSteps.forEach((progressStep, idx) => {
-      if (idx < formStepsNum + 1) {
-        progressStep.classList.add("progress-step-active");
-      } else {
-        progressStep.classList.remove("progress-step-active");
-      }
-    });
-
-    const progressActive = document.querySelectorAll(".progress-step-active");
-
-    progress.style.width =
-      ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
-  }
-</script>
