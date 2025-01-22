@@ -1,12 +1,3 @@
-/*
-@font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-} 
-  */
-
 @font-face {
   font-family: 'Pretendard';
   src: url('./images/Pretendard-Regular.woff') format('woff');
@@ -80,6 +71,89 @@ a {
   align-items: center;
 }
 
+/* 약관동의 */
+
+.check-agree {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f2f3f7;
+  border-radius: 8px;
+}
+
+.check-agree input {
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
+.check-all, .agree, .agree-top, .agree-bottom {
+  display: flex;
+  padding: 10px 0;
+}
+
+.check-all {
+  border-bottom: 1px solid #f2f3f7;
+  padding: 20px 0;
+}
+
+.agree, .agree-top, .agree-bottom {
+  padding: 15px 0;
+}
+
+.agree-top {
+  padding-top: 20px;
+}
+
+.agree-bottom {
+  padding-bottom: 20px;
+}
+
+/* 모달창 */
+
+#modalOpenText, #modalCloseButton, #modalOpenText01, #modalCloseButton01,
+#modalOpenText02, #modalCloseButton02, #modalOpenText03, #modalCloseButton03,
+#modalOpenText04, #modalCloseButton04 {
+  cursor: pointer;
+}
+
+#modalContainer, #modalContainer01, #modalContainer02, #modalContainer03, #modalContainer04 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#modalContent, #modalContent01, #modalContent02, #modalContent03, #modalContent04 {
+  position: absolute;
+  background-color: #ffffff;
+  width: 300px;
+  height: 150px;
+  padding: 20px 30px;
+}
+
+#modalContainer.hidden, #modalContainer01.hidden01,
+#modalContainer02.hidden02, #modalContainer03.hidden03, #modalContainer04.hidden04  {
+  display: none;
+}
+
+#modalCloseButton, #modalCloseButton01,
+#modalCloseButton02, #modalCloseButton03, #modalCloseButton04 {
+  background-color: #5463FF;
+  color: #fff;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  position: relative;
+  left: 50%;
+  top:50%;
+  transform: translate(100%, -50%);
+}
+
+
 .login-btn {
   border: 1px solid #ebebeb;
   border-radius: 8px;
@@ -101,13 +175,6 @@ a {
   margin-right: 30px;
   font-size: 15px;
   background-color: #f2f3f7;
-}
-
-form {
-  width: 430px;
-  margin: auto;
-  vertical-align: middle;
-  margin-top: 80px;
 }
 
 table input {
@@ -144,23 +211,41 @@ input > div .join-btn {
 
 input[type="submit" i] {
   width: 300px;
-  background-color: #5463FF;
+  background-color: var(--primary-color);
   color: #fff;
   margin-top: 20px;
 }
 
-.email-group {
+.email-group, .nickname-group {
   display: flex;
   align-items: center;
 }
 
 .email-group input {
-  width: 120px;
+  width: 35%;
+}
+
+.email-group select {
+  width: 40%;
+  padding: 20px;
+}
+
+.nickname-group input {
+  width: 100%;
+}
+
+.nickname-group .btn-nickname {
+  width: 80px;
+  padding: 20px;
+  margin-left: 10px;
+  font-size: 14px;
 }
 
 .email-group .btn-email {
-  width: 100px;
+  width: 80px;
+  padding: 20px;
   margin-left: 10px;
+  font-size: 14px;
 }
 
 /* Global Stylings */
@@ -169,82 +254,31 @@ label {
   margin-left: 20px;
 }
 
+.join_form {
+  margin-top: 50px;
+}
+
 .input-user label {
   margin: 10px 0;
 }
 
 input {
   display: block;
-  padding: 15px;
-  border: 1px solid #ccc;
+  padding: 20px;
+  border: 0;
   border-radius: 8px;
-}
-
-/* Progressbar */
-.progressbar {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  counter-reset: step;
-  margin: 2rem 0 4rem;
-}
-
-.progressbar::before,
-.progress {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 4px;
-  width: 100%;
-  background-color: #f2f3f7;
-  z-index: -1;
-}
-
-.progress {
-  background-color: var(--primary-color);
-  width: 0%;
-  transition: 0.3s;
-}
-
-.progress-step {
-  width: 2.1875rem;
-  height: 2.1875rem;
-  background-color: #f2f3f7;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/*
-.progress-step::before {
-  counter-increment: step;
-  content: counter(step);
-}
-*/
-
-.progress-step::after {
-  content: attr(data-title);
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  font-size: 14px;
-  color: #666;
-  width: 70px;
-  text-align: center;
-}
-
-.progress-step-active {
-  background-image: url(./IMG/check.png);
-  background-size: cover;
-  color: #f3f3f3;
+  background-color: #F2F3F7;
+  color: #A8A8AA;
 }
 
 /* Form */
 .form {
-  width: 430px;
-  margin-top: 50px;
-  padding: 1.5rem;
+  width: 600px;
+  margin-top: 80px;
+  margin: auto;
+  vertical-align: middle;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .form-step {
@@ -262,7 +296,6 @@ input {
   margin: 20px 0;
   display: flex;
   padding: 5px 10px;
-
 }
 
 .allCheck {
@@ -282,9 +315,8 @@ input {
 .input-user {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
-
-
 
 @keyframes animate {
   from {
@@ -307,7 +339,7 @@ input {
 
 .btns-group-one {
   display: flex;
-  width: 430px;
+  width: 100%;
   justify-content: center;
   margin-top: 30px;
 }
@@ -329,9 +361,11 @@ input {
   transition: 0.3s;
 }
 
-.btn:hover {
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
-}
+input:focus {
+  outline: 1px solid var(--primary-color);
+  background-color: rgba(84, 99, 255, 0.1);
+} 
+
 
 /* 모바일 (휴대폰, 태블릿 세로) */
 @media only screen and (min-width: 200px) and (max-width: 1000px) {
@@ -365,7 +399,11 @@ input {
     text-align: center;
     font-weight: bold;
   }
-  
+
+  .form-step h2 {
+    text-align: center;
+  }
+
   table input {
     width: 300px;
     height: 45px;
@@ -398,7 +436,7 @@ input {
   
   input[type="submit" i] {
     width: 300px;
-    background-color: #5463FF;
+    background-color: var(--primary-color);
     color: #fff;
     margin-top: 20px;
   }
