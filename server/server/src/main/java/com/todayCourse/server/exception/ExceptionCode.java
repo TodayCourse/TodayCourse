@@ -2,6 +2,7 @@ package com.todayCourse.server.exception;
 
 import lombok.Getter;
 
+@Getter
 public enum ExceptionCode {
 
     // common
@@ -9,12 +10,13 @@ public enum ExceptionCode {
 
     // user
     MEMBER_EXISTS(400, "Member Exists"),
-    MEMBER_NOT_FOUND(400, "Member Not Found");
+    MEMBER_NOT_FOUND(400, "Member Not Found"),
 
-    @Getter
+    // travel
+    TRAVEL_EXIST(400, "Travel Exists"),
+    TRAVEL_NOT_FOUND(400, "Travel Not Found");
+
     private int status;
-
-    @Getter
     private String message;
 
     ExceptionCode(int status, String message) {
