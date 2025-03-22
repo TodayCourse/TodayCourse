@@ -1,0 +1,49 @@
+p, h3 {
+  margin: 0;
+  padding: 5px 0;
+}
+
+.TravelList {
+  display: flex;
+  max-width: 800px;
+}
+
+.TravelList-contents {
+  display: flex;
+}
+
+.TravelList-contents ul {
+  padding: 0;
+}
+
+.TravelList-contents li {
+  list-style-type: none;
+  display: flex;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--gray-color-20);
+}
+
+.TravelList-contents h3 {
+  font-family: "Pretendard-SemiBold";
+  font-size: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.TravelList-contents .TravelList-TravelList-btn {
+  background-color: var(--blue-color-30);
+  color: #fff;
+  font-size: 15px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-family: "Pretendard-Regular";
+}
+
+.TravelList-description {
+  margin-top: 10px;
+}
+
+.TravelList-description p {
+  text-overflow: ellipsis;
+}
