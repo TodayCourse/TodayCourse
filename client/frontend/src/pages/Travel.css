@@ -1,0 +1,10 @@
+.Travel {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding: 0 150px;
+}
+
+.Button_1 {
+  margin-top: 40px;
+}
