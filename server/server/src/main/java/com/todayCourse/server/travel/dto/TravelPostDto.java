@@ -2,6 +2,7 @@ package com.todayCourse.server.travel.dto;
 
 import com.todayCourse.server.constant.CostType;
 import com.todayCourse.server.constant.Season;
+import com.todayCourse.server.constant.Vehicle;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,8 @@ public class TravelPostDto {
     private CostType costType;
 
     private Season season;
+
+    private Vehicle vehicle;
 
     private String contents;
 

@@ -3,6 +3,7 @@ package com.todayCourse.server.travel.entity;
 import com.todayCourse.server.audit.Auditable;
 import com.todayCourse.server.constant.CostType;
 import com.todayCourse.server.constant.Season;
+import com.todayCourse.server.constant.Vehicle;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +43,10 @@ public class Travel extends Auditable {
     @Column
     @Enumerated(EnumType.STRING)
     private Season season;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Vehicle vehicle;
 
     @Column
     private String contents;

@@ -46,6 +46,7 @@ public class TravelService {
         if (travel.getTravelEndDt() != null) findTravel.setTravelEndDt(travel.getTravelEndDt());
         if (travel.getCostType() != null) findTravel.setCostType(travel.getCostType());
         if (travel.getSeason() != null) findTravel.setSeason(travel.getSeason());
+        if (travel.getVehicle() != null) findTravel.setVehicle(travel.getVehicle());
         if (travel.getContents() != null) findTravel.setContents(travel.getContents());
         if (travel.getRegUserId() != null) findTravel.setMdfcUserId(travel.getRegUserId());
     }
