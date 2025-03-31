@@ -2,7 +2,6 @@ package com.todayCourse.server.travel.controller;
 
 import com.todayCourse.server.travel.dto.TravelPatchDto;
 import com.todayCourse.server.travel.dto.TravelPostDto;
-import com.todayCourse.server.travel.dto.TravelResponseDto;
 import com.todayCourse.server.travel.entity.Travel;
 import com.todayCourse.server.travel.mapper.TravelMapper;
 import com.todayCourse.server.travel.service.TravelService;
