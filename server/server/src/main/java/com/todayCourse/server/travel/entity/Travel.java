@@ -2,6 +2,7 @@ package com.todayCourse.server.travel.entity;
 
 import com.todayCourse.server.audit.Auditable;
 import com.todayCourse.server.constant.CostType;
+import com.todayCourse.server.constant.Region;
 import com.todayCourse.server.constant.Season;
 import com.todayCourse.server.constant.Vehicle;
 import jakarta.persistence.*;
@@ -25,7 +26,7 @@ public class Travel extends Auditable {
     private String title;
 
     @Column(nullable = false)
-    private String region;
+    private Region region;
 
     @Column(nullable = false)
     private String category;

@@ -1,6 +1,7 @@
 package com.todayCourse.server.travel.dto;
 
 import com.todayCourse.server.constant.CostType;
+import com.todayCourse.server.constant.Region;
 import com.todayCourse.server.constant.Season;
 import com.todayCourse.server.constant.Vehicle;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class TravelPatchDto {
 
     private String title;
 
-    private String region;
+    private Region region;
 
     private String category;
 

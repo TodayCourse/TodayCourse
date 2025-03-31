@@ -37,7 +37,7 @@ public class TravelService {
     }
 
     public void updateTravel(Travel travel) {
-        Travel findTravel = verfiedTravel(travel.getTravelId());
+        Travel findTravel = verifiedTravel(travel.getTravelId());
 
         if (travel.getTitle() != null) findTravel.setTitle(travel.getTitle());
         if (travel.getRegion() != null) findTravel.setRegion(travel.getRegion());
@@ -52,7 +52,7 @@ public class TravelService {
     }
 
     public void deleteTravel(Long travelId) {
-        verfiedTravel(travelId);
+        verifiedTravel(travelId);
         travelRepository.deleteById(travelId);
     }
 
@@ -63,7 +63,7 @@ public class TravelService {
         }
     }
 
-    public Travel verfiedTravel(Long travelId) {
+    public Travel verifiedTravel(Long travelId) {
         return travelRepository.findByTravelId(travelId)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.TRAVEL_NOT_FOUND));
 
