@@ -4,10 +4,13 @@ import com.todayCourse.server.constant.CostType;
 import com.todayCourse.server.constant.Region;
 import com.todayCourse.server.constant.Season;
 import com.todayCourse.server.constant.Vehicle;
+import com.todayCourse.server.course.dto.CourseResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -36,4 +39,6 @@ public class TravelResponseDto {
     private String regUserId;
 
     private String mdfcUserId;
+
+    private List<CourseResponseDto> courseList;
 }

@@ -1,5 +1,6 @@
 package com.todayCourse.server.travel.controller;
 
+import com.todayCourse.server.travel.dto.TravelListResponseDto;
 import com.todayCourse.server.travel.dto.TravelPatchDto;
 import com.todayCourse.server.travel.dto.TravelPostDto;
 import com.todayCourse.server.travel.entity.Travel;
@@ -33,7 +34,7 @@ public class TravelController {
     @GetMapping
     public ResponseEntity getTravelList() {
         List<Travel> travelList = travelService.getTravelList();
-        return new ResponseEntity<>(travelMapper.travelToTravelResponseDtoList(travelList), HttpStatus.OK);
+        return new ResponseEntity<>(travelMapper.travelToTravelListResponseDto(travelList), HttpStatus.OK);
     }
     // 여행 정보 상세조회
     @GetMapping("/{travelId}")
@@ -44,9 +45,10 @@ public class TravelController {
 
     // 여행 정보 수정
     @PatchMapping("/{travelId}")
-    public ResponseEntity patchTravel(@RequestBody @Valid TravelPatchDto travelPatchDto) {
-        travelService.updateTravel(travelMapper.patchDtoToTravel(travelPatchDto));
-        Travel travel = travelService.getTravel(travelPatchDto.getTravelId());
+    public ResponseEntity patchTravel(@PathVariable Long travelId,
+                                      @RequestBody @Valid TravelPatchDto travelPatchDto) {
+        travelService.updateTravel(travelId, travelMapper.patchDtoToTravel(travelPatchDto));
+        Travel travel = travelService.getTravel(travelId);
         return new ResponseEntity<>(travelMapper.travelToTravelResponseDto(travel), HttpStatus.OK);
     }
 
