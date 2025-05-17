@@ -5,11 +5,15 @@ import com.todayCourse.server.constant.CostType;
 import com.todayCourse.server.constant.Region;
 import com.todayCourse.server.constant.Season;
 import com.todayCourse.server.constant.Vehicle;
+import com.todayCourse.server.course.entity.Course;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -58,4 +62,12 @@ public class Travel extends Auditable {
     @Column
     private String mdfcUserId;
 
+    // Travel : Course = 1 : N 관계 매핑
+    @OneToMany(mappedBy = "travel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Course> courseList = new ArrayList<>();
+
+    public void addCourse(Course course) {
+        courseList.add(course);
+        course.setTravel(this);
+    }
 }

@@ -12,7 +12,8 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TravelPatchDto {
+public class TravelListResponseDto {
+    private Long travelId;
 
     private String title;
 
@@ -34,5 +35,7 @@ public class TravelPatchDto {
 
     private String regUserId;
 
-    private String mdfdUserId;
+    private String mdfcUserId;
+
+    private int courseCount;
 }
