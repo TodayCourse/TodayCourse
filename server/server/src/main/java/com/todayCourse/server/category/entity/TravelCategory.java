@@ -35,7 +35,7 @@ public class TravelCategory extends Auditable {
     private String mdfcUserId;
 
     // Category : Travel = 1 : N 관계 매핑
-    @OneToMany(mappedBy = "travelcategory", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "travelCategory", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Travel> travelList = new ArrayList<>();
     
     public void addTravel(Travel travel) {
