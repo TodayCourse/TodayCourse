@@ -27,10 +27,11 @@ Thumbs.db
 # macOS 시스템 파일
 .DS_Store
 
-# 특정 위치에 있는 폴더 무시
+# 생성된 파일/리소스 폴더 무시
 /server/server/src/main/generated/
 /server/server/src/main/resources/
 
-# 또는 전체 패턴
+# 또는 패턴 방식
 **/generated/
 **/resources/
+
