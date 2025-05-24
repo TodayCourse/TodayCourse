@@ -30,3 +30,7 @@ Thumbs.db
 # 서버 빌드 디렉토리
 server/server/src/main/generated/
 server/server/src/main/resources/
+
+# Ignore auto-generated files
+/server/server/src/main/generated/
+/server/server/src/main/resources/
