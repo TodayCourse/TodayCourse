@@ -6,22 +6,31 @@ import image from "../img/image.png";
 import dayjs from "dayjs";
 
 const TravelList = () => {
+import { useNavigate } from "react-router-dom";
+import "./TravelList.css";
+import { formatDays } from "../util/until";
+import React, { useEffect, useState } from "react";
+import New from "../pages/TravelRegister";
+
+const TravelList = ({ courses }) => {
   const [travelList, setTravelList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const location = useLocation();
 
-  // 목록조회
   const TravelList = async () => {
     try {
       const response = await fetch("http://localhost:8080/api/travel");
+  const TravelList = async () => {
+    try {
+      const response = await fetch("/api/travel");
       if (!response.ok) {
         throw new Error("데이터를 가져오는 데 실패했습니다.");
       }
       const data = await response.json();
-      console.log(data);
       setTravelList(data);
+      setTravelList(data.TravelResponseDtoList);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -35,7 +44,7 @@ const TravelList = () => {
 
   useEffect(() => {
     if (location.state?.refresh) {
-      TravelList(); // 새로고침 요청 시 다시 불러옴
+      TravelList(); 
     }
   }, [location.state]);
 
@@ -43,9 +52,13 @@ const TravelList = () => {
 
   const goToContents = (travelId) => {
     navigate(`/travelinfo/${travelId}`);
+
+  const navigate = useNavigate();
+
+  const goToContents = (travelId) => {
+    navigate(`/contents/${travelId}`);
   };
 
-  // 지역을 텍스트로 변환하는 함수
   const getRegionText = (region) => {
     switch (region) {
       case "SEOUL":
@@ -85,6 +98,8 @@ const TravelList = () => {
       default:
         return "알 수 없는 지역";
     }
+
+    return regionMap[region] || "알 수 없음";
   };
 
   return (
@@ -122,6 +137,26 @@ const TravelList = () => {
             )}
           </ul>
         </div>
+      <div className="TravelList-contents">
+        <ul>
+          {courses.map((course) => (
+            <li key={course.travelId} className="TravelList-item">
+              <div
+                className="TravelList-contents-"
+                onClick={() => goToContents(course.travelId)}
+                style={{ cursor: "pointer" }}
+              >
+                <p>
+                  {getRegionText(course.region)}&nbsp;|&nbsp;
+                  {course.days.travelStartDt} ~ {course.days.travelEndDt} (
+                  {course.days.formatted})
+                </p>
+                <h3>{course.title}</h3>
+                <p className="TravelList-description">{course.contents}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

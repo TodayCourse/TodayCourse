@@ -4,12 +4,6 @@ body{
   overflow: scroll;
 }
 
-/* 
-body {
-  overflow: auto;
-}  /* 전체 페이지에 스크롤 허용 */
-
-
 .TravelRegister-post {
   display: flex;
   flex-direction: column;
@@ -127,6 +121,7 @@ input:focus {
   width: 100%;
   white-space: nowrap;
 }
+
 .courseAdd .courseAddBtn {
   width: 100%;
   height: 60px;
@@ -179,7 +174,6 @@ input:focus {
   white-space: nowrap;
   align-items: center;
 }
-
 
 .courseEdit Button {
   width: 100%;
