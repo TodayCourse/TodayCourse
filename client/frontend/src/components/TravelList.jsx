@@ -1,3 +1,11 @@
+import { useNavigate, useLocation } from "react-router-dom";
+import "./TravelList.css";
+import React, { useEffect, useState } from "react";
+import image from "../img/image.png";
+
+import dayjs from "dayjs";
+
+const TravelList = () => {
 import { useNavigate } from "react-router-dom";
 import "./TravelList.css";
 import { formatDays } from "../util/until";
@@ -9,7 +17,11 @@ const TravelList = ({ courses }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 목록조회
+  const location = useLocation();
+
+  const TravelList = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/travel");
   const TravelList = async () => {
     try {
       const response = await fetch("/api/travel");
@@ -17,7 +29,7 @@ const TravelList = ({ courses }) => {
         throw new Error("데이터를 가져오는 데 실패했습니다.");
       }
       const data = await response.json();
-      console.log(data.TravelResponseDtoList);
+      setTravelList(data);
       setTravelList(data.TravelResponseDtoList);
     } catch (err) {
       setError(err.message);
@@ -30,47 +42,101 @@ const TravelList = ({ courses }) => {
     TravelList();
   }, []);
 
-  // const [travelList, setTravelList] = useState([]); // 여행 정보 목록 상태 관리
-
-  // useEffect(() => {
-  //   const fetchTravelList = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:8080/travel"); // 백엔드 URL
-  //       if (!response.ok) {
-  //         throw new Error("데이터를 불러오는 데 실패했습니다.");
-  //       }
-  //       const data = await response.json();
-  //       console.log(data.TravelResponseDtoList);
-  //       setTravelList(data.TravelResponseDtoList);
-  //       setTravelList(data); // 불러온 데이터를 상태에 저장
-  //     } catch (error) {
-  //       console.error("오류 발생:", error);
-  //     }
-  //   };
-
-  //   fetchTravelList(); // 데이터 불러오기
-  // }, []);
+  useEffect(() => {
+    if (location.state?.refresh) {
+      TravelList(); 
+    }
+  }, [location.state]);
 
   const navigate = useNavigate();
 
-  // 내용 페이지로 이동
+  const goToContents = (travelId) => {
+    navigate(`/travelinfo/${travelId}`);
+
+  const navigate = useNavigate();
+
   const goToContents = (travelId) => {
     navigate(`/contents/${travelId}`);
   };
 
-  // 지역을 텍스트로 변환하는 함수
   const getRegionText = (region) => {
-    const regionMap = {
-      서울: "서울",
-      대구: "대구",
-      부산: "부산",
-    };
+    switch (region) {
+      case "SEOUL":
+        return "서울";
+      case "BUSAN":
+        return "부산";
+      case "DAEGU":
+        return "대구";
+      case "INCHEON":
+        return "인천";
+      case "GWANGJU":
+        return "광주";
+      case "DAEJEON":
+        return "대전";
+      case "ULSAN":
+        return "울산";
+      case "SEJONG":
+        return "세종";
+      case "GYEONGGI":
+        return "경기";
+      case "GANGWON":
+        return "강원";
+      case "CHUNGBUK":
+        return "충북";
+      case "CHUNGNAM":
+        return "충남";
+      case "JEONBUK":
+        return "전북";
+      case "JEONNAM":
+        return "전남";
+      case "GYEONGBUK":
+        return "경북";
+      case "GYEONGNAM":
+        return "경남";
+      case "JEJU":
+        return "제주";
+      default:
+        return "알 수 없는 지역";
+    }
 
-    return regionMap[region] || "알 수 없음"; // 해당 지역이 없으면 "알 수 없음" 반환
+    return regionMap[region] || "알 수 없음";
   };
 
   return (
     <div className="TravelList">
+      <div className="TravelList-main">
+        <div className="TravelList-content">
+          <ul>
+            {travelList && travelList.length > 0 ? (
+              travelList.map((course) => (
+                <li key={course.travelId} className="TravelList-item">
+                  <div
+                    className="TravelList-contents"
+                    onClick={() => goToContents(course.travelId)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="image">
+                      <img src={image} alt="이미지" />
+                    </div>
+                    <div className="TravelList-contents-text">
+                      <p>
+                        {getRegionText(course.region)}&nbsp;|&nbsp;
+                        {dayjs(course.travelStartDt).format("YYYY-MM-DD")} ~
+                        {dayjs(course.travelEndDt).format("YYYY-MM-DD")}
+                      </p>
+                      <h3>{course.title}</h3>
+                      <p className="TravelList-description">
+                        {course.contents}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <p>여행 정보를 불러오는 중이거나 없습니다.</p>
+            )}
+          </ul>
+        </div>
       <div className="TravelList-contents">
         <ul>
           {courses.map((course) => (

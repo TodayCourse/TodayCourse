@@ -1,10 +1,10 @@
 import "./Login.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "/logo.png";
-import google from "/google.png";
-import naver from "/naver.png";
-import kakao from "/kakao.png";
+import logo from "../img/logo.png";
+import google from "../img/google.png";
+import naver from "../img/naver.png";
+import kakao from "../img/kakao.png";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -63,7 +63,7 @@ const Login = () => {
       <Header />
 
       <div className="login">
-        <div className="logo">
+        <div className="login-logo">
           <Link to={"/"}>
             <img src={logo} alt="로고" />
           </Link>

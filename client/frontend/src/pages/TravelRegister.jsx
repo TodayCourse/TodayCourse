@@ -6,34 +6,61 @@ import "react-datepicker/dist/react-datepicker.css";
 import Button from "../components/Button";
 import Header from "../components/Header";
 
-// 날짜를 "1박 2일" 형식으로 변환하는 함수
-const formatDays = (travelStartDt, travelEndDt) => {
-  if (!travelStartDt || !travelEndDt) return "기간 미정";
+import dayjs from "dayjs";
 
-  // 문자열을 Date 객체로 변환 (예: "20250323" → "2025-03-23")
-  const parseDate = (dateStr) => {
-    const year = parseInt(dateStr.substring(0, 4), 10);
-    const month = parseInt(dateStr.substring(4, 6), 10) - 1; // JavaScript의 월은 0부터 시작
-    const day = parseInt(dateStr.substring(6, 8), 10);
-    return new Date(year, month, day);
-  };
-
-  const startDate = parseDate(travelStartDt);
-  const endDate = parseDate(travelEndDt);
-
-  // 일수 계산
-  const diff = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-
-  return `${diff}박 ${diff + 1}일`;
-};
+const TravelRegister = ({ addPost }) => {
+  const navigate = useNavigate();
 
 const TravelRegister = ({ addPost }) => {
   const navigate = useNavigate();
   const [region, setRegion] = useState(""); // 지역 상태
   const [title, setTitle] = useState(""); // 제목 상태
-  // const [content, setContent] = useState(""); // 내용 상태
   const [costType, setCostType] = useState(""); // 비용 상태
   const [travelStartDt, setTravelStartDt] = useState(null); // 시작 날짜
+  const [travelEndDt, setTravelEndDt] = useState(null); // 종료 날짜
+  const [category, setCategory] = useState(""); // 카테고리
+  const [vehicle, setVehicle] = useState(""); // 이동수단
+  const [season, setSeason] = useState(""); // 계절
+  const [contents, setContents] = useState(""); // 내용
+
+  const handleSave = async () => {
+
+    if (!title || !contents) {
+      alert("제목과 내용을 입력해주세요!");
+      return;
+    }
+
+    const travelStartDtFormatted = dayjs(travelStartDt).format("YYYY-MM-DD");
+    const travelEndDtFormatted = dayjs(travelEndDt).format("YYYY-MM-DD");
+
+    const newPost = {
+      title,
+      contents,
+      region,
+      season,
+      category,
+      costType,
+      vehicle,
+      travelStartDt: travelStartDtFormatted,
+      travelEndDt: travelEndDtFormatted,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/api/travel/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPost),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      navigate("/travel");
+    }
+
   const [travelEndDt, settravelEndDt] = useState(null); // 종료 날짜
   const [category, setCategory] = useState(""); // 카테고리
   const [means, setMeans] = useState(""); // 이동수단
@@ -46,33 +73,6 @@ const TravelRegister = ({ addPost }) => {
   const [contact, setContact] = useState("");
   const [infoSaved, setInfoSaved] = useState(false);
   const [isInfoProcessing, setIsInfoProcessing] = useState(false);
-
-  const handleInfoSave = () => {
-    setInfoSaved(true);
-    setShowInfoForm(false);
-    setIsInfoProcessing(false); // 정보 처리 후 '정보 처리하기' 버튼 숨기기
-  };
-
-  const handleInfoEdit = () => {
-    setShowInfoForm(true); // 수정할 때 입력 폼을 다시 띄움
-    setIsInfoProcessing(true); // 수정 시 '정보 처리하기' 버튼 표시
-  };
-
-  const handleInfoDelete = () => {
-    setPlaceName("");
-    setAddress("");
-    setContact("");
-    setInfoSaved(false);
-    setShowInfoForm(false);
-    setIsInfoProcessing(false); // '정보 처리하기' 버튼 숨기기
-  };
-
-  const handleReset = () => {
-    setPlaceName("");
-    setAddress("");
-    setContact("");
-    // `showInfoForm`을 그대로 두어 입력 폼은 계속 표시되도록 유지
-  };
 
   const handleSave = () => {
     if (!title || !travelStartDt || !travelEndDt) {
@@ -137,6 +137,23 @@ const TravelRegister = ({ addPost }) => {
               <option value="" disabled>
                 지역을 선택해주세요.
               </option>
+              <option value="SEOUL">서울</option>
+              <option value="BUSAN">부산</option>
+              <option value="DAEGU">대구</option>
+              <option value="INCHEON">인천</option>
+              <option value="GWANGJU">광주</option>
+              <option value="DAEJEON">대전</option>
+              <option value="ULSAN">울산</option>
+              <option value="SEJONG">세종</option>
+              <option value="GYEONGGI">경기</option>
+              <option value="GANGWON">강원</option>
+              <option value="CHUNGBUK">충북</option>
+              <option value="CHUNGNAM">충남</option>
+              <option value="JEONBUK">전북</option>
+              <option value="JEONNAM">전남</option>
+              <option value="GYEONGBUK">경북</option>
+              <option value="GYEONGNAM">경남</option>
+              <option value="JEJU">제주</option>
               <option value="서울">서울</option>
               <option value="대구">대구</option>
               <option value="부산">부산</option>
@@ -159,7 +176,6 @@ const TravelRegister = ({ addPost }) => {
           <label>내용</label>
           <textarea></textarea>
         </div>
-
         <div className="selectCategory">
           <label>카테고리</label>
           <select
@@ -194,6 +210,7 @@ const TravelRegister = ({ addPost }) => {
           <label>여행 종료일</label>
           <DatePicker
             selected={travelEndDt}
+            onChange={(date) => setTravelEndDt(date)}
             onChange={(date) => settravelEndDt(date)}
             selectsEnd
             travelStartDt={travelStartDt}
@@ -222,6 +239,20 @@ const TravelRegister = ({ addPost }) => {
               <option value="OVER_500K">50만원 이상</option>
             </select>
           </div>
+          <div className="selectVehicle">
+            <label>이동수단</label>
+            <select
+              value={vehicle}
+              onChange={(e) => setVehicle(e.target.value)}
+            >
+              <option value="" disabled>
+                비용을 선택해주세요.
+              </option>
+              <option value="PUBLIC_TRANSPORT">대중교통</option>
+              <option value="CAR">자동차</option>
+              <option value="TAXI">택시</option>
+              <option value="WALK">도보</option>
+              <option value="BICYCLE">자전거</option>
           <div className="selectMeans">
             <label>이동수단</label>
             <select value={means} onChange={(e) => setMeans(e.target.value)}>
@@ -237,81 +268,14 @@ const TravelRegister = ({ addPost }) => {
           </div>
         </div>
 
-        {!infoSaved && (
-          <div className="courseAdd">
-            <span>코스 01</span>
-            <button
-              className="courseAddBtn"
-              onClick={() => setShowInfoForm(true)}
-            >
-              정보 추가하기
-            </button>
-          </div>
-        )}
-        {showInfoForm && (
-          <div className="handleButton">
-            <Button
-              onClick={handleReset}
-              text={"초기화"}
-              type="handle-secondary"
-            ></Button>
-            <Button
-              onClick={handleInfoSave}
-              text={"입력완료"}
-              type="handle"
-            ></Button>
-          </div>
-        )}
-        {showInfoForm && (
-          <div className="info-form">
-            <div className="info-form place">
-              <label>장소명</label>
-              <input
-                type="text"
-                placeholder="장소명"
-                value={placeName}
-                onChange={(e) => setPlaceName(e.target.value)}
-              />
-            </div>
-            <div className="info-form address">
-              <label>주소</label>
-              <input
-                type="text"
-                placeholder="주소"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div className="info-form information">
-              <label>영업시간</label>
-              <input
-                type="text"
-                placeholder="ex. 09시 ~ 20시"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-              />
-              <label>연락처</label>
-              <input
-                type="text"
-                placeholder="연락처"
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-              />
-            </div>
-          </div>
-        )}
-
-        {infoSaved && (
-          <div className="courseEdit">
-            <span>코스 01</span>
-            <Button
-              onClick={handleInfoDelete}
-              text={"삭제"}
-              type="secondary"
-            ></Button>
-            <Button onClick={handleInfoEdit} text={"수정"} type="edit"></Button>
-          </div>
-        )}
+        <div className="register-textarea">
+          <label>내용</label>
+          <textarea
+            value={contents}
+            onChange={(e) => setContents(e.target.value)}
+            placeholder="내용을 입력하세요."
+          ></textarea>
+        </div>
 
         <div className="TravelRegister_btn">
           <Button onClick={handleCancel} text={"취소"} type="secondary" />

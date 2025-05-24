@@ -5,11 +5,57 @@ p, h3 {
 
 .TravelList {
   display: flex;
+}
+
+.TravelList-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.TravelList-content {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
   max-width: 800px;
 }
 
 .TravelList-contents {
   display: flex;
+  gap: 30px;
+}
+
+.TravelList-content .image {
+  width: 350px;
+}
+
+.TravelList-content .image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.TravelList-contents-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.TravelList-content ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
+
+.TravelList-content li {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  align-items: center;
+
 }
 
 .TravelList-contents ul {
