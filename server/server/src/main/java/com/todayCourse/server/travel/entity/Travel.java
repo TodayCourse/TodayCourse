@@ -1,6 +1,7 @@
 package com.todayCourse.server.travel.entity;
 
 import com.todayCourse.server.audit.Auditable;
+import com.todayCourse.server.category.entity.TravelCategory;
 import com.todayCourse.server.constant.CostType;
 import com.todayCourse.server.constant.Region;
 import com.todayCourse.server.constant.Season;
@@ -69,5 +70,14 @@ public class Travel extends Auditable {
     public void addCourse(Course course) {
         courseList.add(course);
         course.setTravel(this);
+    }
+
+    // Travel : Category = N : 1 관계 매핑
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private TravelCategory travelCategory;
+
+    public void setTravelCategory(TravelCategory travelCategory) {
+        this.travelCategory = travelCategory;
     }
 }
