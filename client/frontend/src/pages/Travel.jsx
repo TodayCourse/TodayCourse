@@ -8,7 +8,6 @@ import Button from "../components/Button";
 const Travel = ({ courses, addPost }) => {
   const navigate = useNavigate();
 
-  // 새 여행 코스를 추가하는 페이지로 이동
   const goToNewPage = () => {
     navigate(`/travelregister`);
   };
@@ -18,8 +17,8 @@ const Travel = ({ courses, addPost }) => {
       <Header />
 
       <div className="Travel">
+        <CourseList courses={courses} />
         <div className="course-list-btn">
-          {/* 새 여행 코스 추가 버튼 */}
           <Button
             className="Button_1"
             onClick={goToNewPage}
@@ -28,7 +27,6 @@ const Travel = ({ courses, addPost }) => {
         </div>
         <TravelList courses={courses} />
       </div>
-
       <Footer />
     </>
   );

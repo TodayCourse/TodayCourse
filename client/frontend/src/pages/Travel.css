@@ -4,6 +4,9 @@
   margin-top: 60px;
   padding: 0 150px;
   flex-direction: column;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding: 0 150px;
 }
 
 .Button_1 {

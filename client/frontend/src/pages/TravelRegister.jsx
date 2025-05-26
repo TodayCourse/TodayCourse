@@ -11,9 +11,10 @@ import dayjs from "dayjs";
 const TravelRegister = ({ addPost }) => {
   const navigate = useNavigate();
 
+const TravelRegister = ({ addPost }) => {
+  const navigate = useNavigate();
   const [region, setRegion] = useState(""); // 지역 상태
   const [title, setTitle] = useState(""); // 제목 상태
-  // const [content, setContent] = useState(""); // 내용 상태
   const [costType, setCostType] = useState(""); // 비용 상태
   const [travelStartDt, setTravelStartDt] = useState(null); // 시작 날짜
   const [travelEndDt, setTravelEndDt] = useState(null); // 종료 날짜
@@ -23,24 +24,11 @@ const TravelRegister = ({ addPost }) => {
   const [contents, setContents] = useState(""); // 내용
 
   const handleSave = async () => {
-    console.log("저장 버튼이 클릭되었습니다.");
 
     if (!title || !contents) {
       alert("제목과 내용을 입력해주세요!");
       return;
     }
-
-    console.log("입력된 값:", {
-      title,
-      contents,
-      region,
-      season,
-      category,
-      costType,
-      vehicle,
-      travelStartDt,
-      travelEndDt,
-    });
 
     const travelStartDtFormatted = dayjs(travelStartDt).format("YYYY-MM-DD");
     const travelEndDtFormatted = dayjs(travelEndDt).format("YYYY-MM-DD");
@@ -58,7 +46,6 @@ const TravelRegister = ({ addPost }) => {
     };
 
     try {
-      console.log("백엔드로 데이터 전송 시작");
       const response = await fetch("http://localhost:8080/api/travel/create", {
         method: "POST",
         headers: {
@@ -71,11 +58,58 @@ const TravelRegister = ({ addPost }) => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      console.log("백엔드 응답 성공:", response);
       navigate("/travel");
-    } catch (error) {
-      console.error("여행 데이터 저장 실패:", error);
     }
+
+  const [travelEndDt, settravelEndDt] = useState(null); // 종료 날짜
+  const [category, setCategory] = useState(""); // 카테고리
+  const [means, setMeans] = useState(""); // 이동수단
+  const [season, setSeason] = useState(""); // 계절
+  const [contents, setContents] = useState(""); // 내용
+
+  const [showInfoForm, setShowInfoForm] = useState(false);
+  const [placeName, setPlaceName] = useState("");
+  const [address, setAddress] = useState("");
+  const [contact, setContact] = useState("");
+  const [infoSaved, setInfoSaved] = useState(false);
+  const [isInfoProcessing, setIsInfoProcessing] = useState(false);
+
+  const handleSave = () => {
+    if (!title || !travelStartDt || !travelEndDt) {
+      alert("제목, 내용 및 여행 날짜를 입력하세요!");
+      return;
+    }
+
+    // 날짜를 "YYYYMMDD" 형식으로 변환하는 함수
+    const formatDateToYYYYMMDD = (date) => {
+      return date ? date.toISOString().split("T")[0].replace(/-/g, "") : "";
+    };
+
+    const newPost = {
+      title,
+      // contents: content,
+      region, // 지역
+      days: {
+        travelStartDt: travelStartDt
+          .toISOString()
+          .split("T")[0]
+          .replace(/-/g, ""),
+        travelEndDt: travelEndDt.toISOString().split("T")[0].replace(/-/g, ""),
+        formatted: formatDays(
+          travelStartDt.toISOString().split("T")[0].replace(/-/g, ""),
+          travelEndDt.toISOString().split("T")[0].replace(/-/g, "")
+        ),
+      },
+      costType, // 비용
+      category, // 카테고리
+      means, // 이동수단
+      placeInfo: infoSaved ? { placeName, address, contact } : null,
+      season,
+      contents,
+    };
+
+    addPost(newPost);
+    navigate("/course");
   };
 
   const handleCancel = () => {
@@ -120,6 +154,9 @@ const TravelRegister = ({ addPost }) => {
               <option value="GYEONGBUK">경북</option>
               <option value="GYEONGNAM">경남</option>
               <option value="JEJU">제주</option>
+              <option value="서울">서울</option>
+              <option value="대구">대구</option>
+              <option value="부산">부산</option>
             </select>
           </div>
           <div className="selectSeason">
@@ -135,7 +172,10 @@ const TravelRegister = ({ addPost }) => {
             </select>
           </div>
         </div>
-
+        <div>
+          <label>내용</label>
+          <textarea></textarea>
+        </div>
         <div className="selectCategory">
           <label>카테고리</label>
           <select
@@ -171,6 +211,7 @@ const TravelRegister = ({ addPost }) => {
           <DatePicker
             selected={travelEndDt}
             onChange={(date) => setTravelEndDt(date)}
+            onChange={(date) => settravelEndDt(date)}
             selectsEnd
             travelStartDt={travelStartDt}
             travelEndDtDate={travelEndDt}
@@ -212,6 +253,17 @@ const TravelRegister = ({ addPost }) => {
               <option value="TAXI">택시</option>
               <option value="WALK">도보</option>
               <option value="BICYCLE">자전거</option>
+          <div className="selectMeans">
+            <label>이동수단</label>
+            <select value={means} onChange={(e) => setMeans(e.target.value)}>
+              <option value="" disabled>
+                비용을 선택해주세요.
+              </option>
+              <option value="traffic">대중교통</option>
+              <option value="car">자동차</option>
+              <option value="tax">택시</option>
+              <option value="walk">도보</option>
+              <option value="cycle">자전거</option>
             </select>
           </div>
         </div>
